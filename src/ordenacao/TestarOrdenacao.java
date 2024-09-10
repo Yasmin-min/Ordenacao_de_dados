@@ -28,14 +28,21 @@ public class TestarOrdenacao {
 		Arquivos.escritorRandom(path);
 		Arquivos.escritorOrdenado(path2);
 		Arquivos.escritorReverso(path3);
-		Arquivos.leitor(path);
+		//Arquivos.leitor(path);
 		TestarOrdenacao.leitor(path, vetor);
 		
-		
-		vetor.insercaoDireta();
+		/*
+		vetor.selecaoDireta();
 		System.out.println("\nVetor ordenado: \n" + vetor.toString());
-		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoinsert());
-		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoinset());
+		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoSelecao());
+		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoSelecao());
+		*/
+		
+		
+		vetor.shellSort();
+		System.out.println("\nVetor ordenado: \n" + vetor.toString());
+		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoshell());
+		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoshell());
 		
 		
 		

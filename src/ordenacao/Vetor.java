@@ -5,17 +5,27 @@ import java.util.Arrays;
 import dados.Item;
 
 public class Vetor {
+
 	private Item[] vetor;
 	private int nElem;
 	private int contComparacaoHeap;
+	private int movimentacaoHeap;
 	private int contComparacaoBubble;
 	private int contTrocaBubble;
 	private int comparacaoinsert; 
 	private int movimentacaoinset;
+	private int movimentacaoSelecao;
+	private int ComparacaoSelecao;
+	private int movimentacaoshell;
+	private int comparacaoshell; 
 	
 	public Vetor(int tamanho) {
 		this.vetor = new Item[tamanho];
 		this.nElem = 0;
+	}
+	
+	public void setnElem(int nElem) {
+		this.nElem = nElem;
 	}
 
 	public int getContComparacaoBubble() {
@@ -29,13 +39,13 @@ public class Vetor {
 	public int getcontComparacaoHeap() {
 		return contComparacaoHeap;
 	}
+	
+	public int getMovimentacaoHeap() {
+		return movimentacaoHeap;
+	}
 
 	public int getnElem() {
 		return nElem;
-	}
-
-	public void setnElem(int nElem) {
-		this.nElem = nElem;
 	}
 
 	public int getComparacaoinsert() {
@@ -44,6 +54,22 @@ public class Vetor {
 
 	public int getMovimentacaoinset() {
 		return movimentacaoinset;
+	}
+	
+	public int getMovimentacaoSelecao() {
+		return movimentacaoSelecao;
+	}
+
+	public int getComparacaoSelecao() {
+		return ComparacaoSelecao;
+	}
+	
+	public int getMovimentacaoshell() {
+		return movimentacaoshell;
+	}
+
+	public int getComparacaoshell() {
+		return comparacaoshell;
 	}
 	
 	public String toString() {
@@ -69,12 +95,17 @@ public class Vetor {
 		Item temp;
 		for (i = 0; i < this.nElem - 1; i++) {
 			minimo = i;
-			for (j = i + 1; j < this.nElem; j++)
-				if (this.vetor[j].getChave() < this.vetor[minimo].getChave())
+			for (j = i + 1; j < this.nElem; j++) {
+				ComparacaoSelecao++;
+				if (this.vetor[j].getChave() < this.vetor[minimo].getChave()) {
 					minimo = j;
+					
+				}
+			}
 			temp = this.vetor[minimo];
 			this.vetor[minimo] = this.vetor[i];
 			this.vetor[i] = temp;
+			movimentacaoSelecao++;
 		}
 	}
 
@@ -108,6 +139,7 @@ public class Vetor {
 			refazHeap(esq--, this.nElem - 1);
 		
 		while (dir > 0) {
+			movimentacaoHeap = getMovimentacaoHeap() + 1;
 			temp = this.vetor[0];
 			this.vetor[0] = this.vetor[dir];
 			this.vetor[dir--] = temp;
@@ -135,24 +167,54 @@ public class Vetor {
 		this.vetor[i] = raiz;
 	}
 
-	public void insercaoDireta(){
+	public void insercaoDireta() {
 		int i, j;
 		Item temp;
-		for (i=1; i < this.nElem; i++){
-		temp = this.vetor[i];
-		j = i-1;
-		
-		while ((j >= 0)&&(this.vetor[j].getChave()>temp.getChave())){
-		comparacaoinsert++;
-		this.vetor [j+1] = this.vetor[j--];
-		movimentacaoinset++; 
-		}
-		this.vetor [j+1] = temp;
+			for (i=1; i < this.nElem; i++){
+			temp = this.vetor[i];
+			j = i-1;
+			
+			while ((j >= 0)&&(this.vetor[j].getChave()>temp.getChave())){
+				comparacaoinsert++;
+				this.vetor [j+1] = this.vetor[j--];
+				movimentacaoinset++; 
+			}
+			this.vetor [j+1] = temp;
 		}
 	}
-
-
 	
-	
+	public void shellSort() {
+			
+			int i, j, h;
+			Item temp;
+			h = 1;
+			do{
+				h = 3*h+1;
+			}while (h < this.nElem);
+			do{
+				h = h/3;
+				
+				for (i=h; i < this.nElem; i++){
+					comparacaoshell++;
+
+					temp = this.vetor[i];
+					j = i;
+					while (this.vetor[j-h].getChave() > temp.getChave()){
+						this.vetor[j] = this.vetor[j-h];
+						j -= h;
+						
+						
+						if (j < h) {
+							break;
+						}
+					}
+					this.vetor [j] = temp;
+					movimentacaoshell++;
+
+				}
+			}while (h != 1);
+			
+	}
+
 
 }
