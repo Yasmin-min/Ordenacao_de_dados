@@ -31,8 +31,17 @@ public class TestarOrdenacao {
 		Arquivos.leitor(path);
 		TestarOrdenacao.leitor(path, vetor);
 		
-		vetor.heapSort();
-		System.out.println("Num. Comparacoes: \n" + vetor.contComparacaoHeap() + "\nVetor ordenado: \n" + vetor.toString());
+		
+		vetor.insercaoDireta();
+		System.out.println("\nVetor ordenado: \n" + vetor.toString());
+		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoinsert());
+		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoinset());
+		
+		
+		
+		
+		//vetor.heapSort();
+		//System.out.println("Num. Comparacoes: \n" + vetor.contComparacaoHeap() + "\nVetor ordenado: \n" + vetor.toString());
 		//Arquivos.escritorReverso(path3);
 		//Arquivos.escritorRandom10000(path4);
 		//Arquivos.escritorOrdenado10000(path5);

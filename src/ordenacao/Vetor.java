@@ -8,14 +8,25 @@ public class Vetor {
 	private Item[] vetor;
 	private int nElem;
 	private int contComparacaoHeap;
+	private int contComparacaoBubble;
+	private int contTrocaBubble;
+	private int comparacaoinsert; 
+	private int movimentacaoinset;
 	
-
 	public Vetor(int tamanho) {
 		this.vetor = new Item[tamanho];
 		this.nElem = 0;
 	}
 
-	public int contComparacaoHeap() {
+	public int getContComparacaoBubble() {
+		return contComparacaoBubble;
+	}
+
+	public int getContTrocaBubble() {
+		return contTrocaBubble;
+	}
+
+	public int getcontComparacaoHeap() {
 		return contComparacaoHeap;
 	}
 
@@ -27,6 +38,14 @@ public class Vetor {
 		this.nElem = nElem;
 	}
 
+	public int getComparacaoinsert() {
+		return comparacaoinsert;
+	}
+
+	public int getMovimentacaoinset() {
+		return movimentacaoinset;
+	}
+	
 	public String toString() {
 		String msg = "";
 		for (int i = 0; i < this.nElem; i++) {
@@ -59,28 +78,35 @@ public class Vetor {
 		}
 	}
 
-	static void bubblesort(int[] vet) {
-		int aux;
-		for (int i = 0; i < vet.length - 1; i++) {
-			for (int j = 0; j < vet.length - 1 - i; j++) {
-
-				if (vet[j] > vet[j + 1]) {
-					aux = vet[j];
-					vet[j] = vet[j + 1];
-					vet[j + 1] = aux;
-
+	public void bubblesort (){ 
+		int n, i, j;
+		Item temp;
+		n = this.nElem-1;
+		do{
+			i = 0;
+			
+			for (j = 0; j < n; j++) {
+				contComparacaoBubble++;
+				if (this.vetor[j].getChave() > this.vetor[j+1].getChave()){
+					temp = this.vetor[j];
+					this.vetor[j] = this.vetor[j+1];
+					this.vetor[j+1] = temp;
+					contTrocaBubble++;
+					i = j;
 				}
 			}
-		}
-
+			n = i;
+		}while(n >= 1);
 	}
 
 	public void heapSort() {
 		int dir = nElem - 1;
 		int esq = (dir - 1) / 2;
 		Item temp;
+		
 		while (esq >= 0)
 			refazHeap(esq--, this.nElem - 1);
+		
 		while (dir > 0) {
 			temp = this.vetor[0];
 			this.vetor[0] = this.vetor[dir];
@@ -109,19 +135,23 @@ public class Vetor {
 		this.vetor[i] = raiz;
 	}
 
-	public void inserçãoDireta(){
+	public void insercaoDireta(){
 		int i, j;
 		Item temp;
 		for (i=1; i < this.nElem; i++){
 		temp = this.vetor[i];
 		j = i-1;
-		//
+		
 		while ((j >= 0)&&(this.vetor[j].getChave()>temp.getChave())){
+		comparacaoinsert++;
 		this.vetor [j+1] = this.vetor[j--];
+		movimentacaoinset++; 
 		}
 		this.vetor [j+1] = temp;
 		}
 	}
+
+
 	
 	
 
