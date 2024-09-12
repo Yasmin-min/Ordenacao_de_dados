@@ -221,3 +221,8 @@ public class Vetor {
 	}
 	
 }
+
+
+
+
+

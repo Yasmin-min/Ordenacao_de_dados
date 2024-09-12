@@ -15,15 +15,14 @@ import dados.Item;
 public class Arquivos {
 	
 	public static void criarPasta() {
-		String caminhoPasta = "C:\\TesteArquivo"; // Substitua pelo caminho e nome da pasta desejada
+		String caminhoPasta = "C:\\TesteArquivo"; 
 	    
-	    // Criando um objeto File com o caminho especificado
 	    File pasta = new File(caminhoPasta);
 
-	    // Verifica se a pasta já existe
+	   
 	    if (!pasta.exists()) {
-	        // Cria a pasta
-	        if (pasta.mkdirs()) {
+
+	    	if (pasta.mkdirs()) {
 	            System.out.println("Pasta criada com sucesso: " + pasta.getAbsolutePath());
 	        } else {
 	            System.out.println("Falha ao criar a pasta.");

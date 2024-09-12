@@ -7,25 +7,39 @@ import java.util.Scanner;
 import dados.Item;
 
 public class ProgramaPrincipal {
+	
+	private static Scanner scanner = new Scanner(System.in);
 
 	public static void main(String[] args) throws IOException{
 		
 		criarPastas();
-		menu();
 		
-		Vetor vetor = new Vetor(tamanho());
-		Arquivos.leitor(tipoArquivo(), vetor);
+		char continuar;
 		
+		do {
+			
+			Vetor vetor = new Vetor(tamanho());
+			
+			Arquivos.leitor(tipoArquivo(), vetor);
+			menu();
+			
+			System.out.println("Deseja fazer outra ordenação? [S/N]");
+			continuar = scanner.next().charAt(0);
+			continuar = Character.toUpperCase(continuar);
+			if(continuar == 'N') {
+				System.out.println("Programa finalizando...");
+			}
+			
+		} while (continuar == 'S');
+		
+		System.out.print("Programa finalizado!");
 		
 	}
 	
 	public static void menu() {
-        Scanner scanner = new Scanner(System.in);
-        Arquivos.criarPasta();
         
         int opcao;
 
-       
             System.out.println("\n---- ORDENACAO DE DADOS -----\n");
             System.out.println("Selecione o valor do tipo de ordenação desejado: "
                     + "\n1. Seleção Direta"
@@ -68,11 +82,10 @@ public class ProgramaPrincipal {
             }
         
 
-        scanner.close();
     }
 	
 	 public static String tipoArquivo() {
-	        Scanner scanner = new Scanner(System.in);
+	        
 	    	String tipo= ""; 
 	    	int opcao;
 	    	
@@ -102,19 +115,19 @@ public class ProgramaPrincipal {
 	    }
 	    
 	    public static int tamanho() {
-	        Scanner scanner = new Scanner(System.in);
 	        
-	    	int opcao, tamanho = 0; 
-	   
-	    	
+	    	int opcao, tamanho = 0;
 	    	
 	    	System.out.print("Escolha a opção do tamanho desejado do vetor: "
-	    			+"\n1. 100;"
+	    			+"\n1. 100"
 	    			+ "\n2. 10.000"
-	    			+"\n3. Escolher o tamanho");
+	    			+"\n3. Escolher o tamanho"
+	    			+ "\n");
+	    	
 	    	opcao = scanner.nextInt();
 	    	
 	    	switch (opcao) { 
+	    	
 	    	case 1: 
 	    		tamanho = 100;
 	    		break;
@@ -126,6 +139,7 @@ public class ProgramaPrincipal {
 	    	case 3: 
 	    		System.out.print("Digite o tamanho desejado: ");
 	    		tamanho = scanner.nextInt();
+	    		break; 
 	    		
 	    	default: 
 				System.out.println("Opção inválida, tente novamente.");
