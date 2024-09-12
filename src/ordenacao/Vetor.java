@@ -17,7 +17,9 @@ public class Vetor {
 	private int movimentacaoSelecao;
 	private int ComparacaoSelecao;
 	private int movimentacaoshell;
-	private int comparacaoshell; 
+	private int comparacaoshell;
+	private int contComparacaoShaker;
+	private int contTrocaShaker;
 	
 	public Vetor(int tamanho) {
 		this.vetor = new Item[tamanho];
@@ -26,6 +28,13 @@ public class Vetor {
 	
 	public void setnElem(int nElem) {
 		this.nElem = nElem;
+	}
+	public int getContComparacaoShaker() {
+		return contComparacaoShaker;
+	}
+
+	public int getContTrocaShaker() {
+		return contTrocaShaker;
 	}
 
 	public int getContComparacaoBubble() {
@@ -218,6 +227,37 @@ public class Vetor {
 			}
 		} while(h !=1);
 
+	}
+		public void shakersort() {
+		int esq, dir, i, j;
+		Item temp;
+		esq = 1;
+		dir = this.nElem - 1;
+		j = dir;
+		do {
+			for (i = dir; i >= esq; i--) {
+				contComparacaoShaker++;
+				if (this.vetor[i - 1].getChave() > this.vetor[i].getChave()) {
+					temp = this.vetor[i];
+					this.vetor[i] = this.vetor[i - 1];
+					this.vetor[i - 1] = temp;
+					j = i;
+					contTrocaShaker++;
+				}
+			}
+			esq = j + 1;
+			for (i = esq; i <= dir; i++) {
+				contComparacaoShaker++;
+				if (this.vetor[i - 1].getChave() > this.vetor[i].getChave()) {
+					temp = this.vetor[i];
+					this.vetor[i] = this.vetor[i - 1];
+					this.vetor[i - 1] = temp;
+					j = i;
+					contTrocaShaker++;
+				}
+			}
+			dir = j - 1;
+		} while (esq <= dir);
 	}
 	
 }
