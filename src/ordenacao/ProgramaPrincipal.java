@@ -12,16 +12,44 @@ public class ProgramaPrincipal {
 
 	public static void main(String[] args) throws IOException{
 		
-		criarPastas();
+		//Arquivos.criarPasta();
+		
+		String path = "C:\\TesteArquivo\\texto.txt";
+		String path2 = "C:\\TesteArquivo\\texto2.txt";
+		String path3 = "C:\\TesteArquivo\\texto3.txt";
+		
+		String path4 = "C:\\TesteArquivo\\texto4.txt";
+		String path5 = "C:\\TesteArquivo\\texto5.txt";
+		String path6 = "C:\\TesteArquivo\\texto6.txt";
+		
+		Arquivos.escritorRandom(path);
+		Arquivos.escritorOrdenado(path2);
+		Arquivos.escritorReverso(path3);
+		
+		Arquivos.escritorRandom10000(path4);
+		Arquivos.escritorOrdenado10000(path5);
+		Arquivos.escritorReverso10000(path6);
+		
+		Vetor vetor1 = new Vetor(100);
+		Vetor vetor2 = new Vetor(10000);
 		
 		char continuar;
 		
 		do {
 			
-			Vetor vetor = new Vetor(tamanho());
 			
-			Arquivos.leitor(tipoArquivo(), vetor);
+			if(tamanho(vetor1, vetor2) == 1) {
+				
+				
+			} else { 
+				
+				Arquivos.leitor10000(tipoArquivo() , vetor2);				
+			}
+			
+			
+			
 			menu();
+			
 			
 			System.out.println("Deseja fazer outra ordenação? [S/N]");
 			continuar = scanner.next().charAt(0);
@@ -84,6 +112,27 @@ public class ProgramaPrincipal {
 
     }
 	
+	public static int  tamanho(Vetor vetor1, Vetor vetor2) throws IOException {
+		
+		
+		System.out.println("Qual o tamnho de vetor você desenha ordenar? "
+				+ "\n1. 100"
+				+ "\n2. 10000");
+		
+		int opcao = scanner.nextInt();
+		
+		switch (opcao) {
+		case 1: 
+			Arquivos.leitor(tipoArquivo() , vetor1);	
+			break;
+		case 2: 
+			Arquivos.leitor(tipoArquivo10000() , vetor2);	
+			break;
+		}
+		return opcao; 
+	}
+	
+	
 	 public static String tipoArquivo() {
 	        
 	    	String tipo= ""; 
@@ -92,19 +141,19 @@ public class ProgramaPrincipal {
 	    	System.out.println("\n Digite o valor da opção do tipo de arquivo que deseja: "
 	    			+"\n1. Random"
 	    			+"\n2. Ordenado"
-	    			+"\n3. Reverso" );
+	    			+"\n3. Reverso"  );
 	    	
 	    	opcao = scanner.nextInt();
 	    	
 	    	switch (opcao){
 	    		case 1: 
-	    			tipo = "path";
+	    			tipo = "C:\\TesteArquivo\\texto.txt";
 	    			break;
 	    		case 2: 
-	    			tipo = "path2";
+	    			tipo = "C:\\TesteArquivo\\texto2.txt";
 	    			break;
 	    		case 3: 
-	    			tipo = "path3";
+	    			tipo = "C:\\TesteArquivo\\texto3.txt";
 	    			break; 
 	    		default: 
 	    			System.out.println("Opção inválida, tente novamente!");
@@ -113,57 +162,34 @@ public class ProgramaPrincipal {
 	    	
 	    	return (tipo); 
 	    }
-	    
-	    public static int tamanho() {
+	 
+	 public static String tipoArquivo10000() {
 	        
-	    	int opcao, tamanho = 0;
+	    	String tipo= ""; 
+	    	int opcao;
 	    	
-	    	System.out.print("Escolha a opção do tamanho desejado do vetor: "
-	    			+"\n1. 100"
-	    			+ "\n2. 10.000"
-	    			+"\n3. Escolher o tamanho"
-	    			+ "\n");
+	    	System.out.println("\n Digite o valor da opção do tipo de arquivo que deseja: "
+	    			+"\n1. Random"
+	    			+"\n2. Ordenado"
+	    			+"\n3. Reverso"  );
 	    	
 	    	opcao = scanner.nextInt();
 	    	
-	    	switch (opcao) { 
-	    	
-	    	case 1: 
-	    		tamanho = 100;
-	    		break;
-	    		
-	    	case 2: 
-	    		tamanho= 10000;
-	    		break; 
-	    		
-	    	case 3: 
-	    		System.out.print("Digite o tamanho desejado: ");
-	    		tamanho = scanner.nextInt();
-	    		break; 
-	    		
-	    	default: 
-				System.out.println("Opção inválida, tente novamente.");
-	            break;
-	    		
+	    	switch (opcao){
+	    		case 1: 
+	    			tipo = "C:\\TesteArquivo\\texto4.txt";
+	    			break;
+	    		case 2: 
+	    			tipo = "C:\\TesteArquivo\\texto5.txt";
+	    			break;
+	    		case 3: 
+	    			tipo = "C:\\TesteArquivo\\texto6.txt";
+	    			break; 
+	    		default: 
+	    			System.out.println("Opção inválida, tente novamente!");
+	                break;
 	    	}
 	    	
-	    	return (tamanho);
-	    }
-	    
-	    public static void criarPastas() throws IOException {
-	    	Arquivos.criarPasta();
-			
-			String path = "C:\\TesteArquivo\\texto.txt";
-			String path2 = "C:\\TesteArquivo\\texto2.txt";
-			String path3 = "C:\\TesteArquivo\\texto3.txt";
-			
-			String path4 = "C:\\TesteArquivo\\texto4.txt";
-			String path5 = "C:\\TesteArquivo\\texto5.txt";
-			String path6 = "C:\\TesteArquivo\\texto6.txt";
-			
-			Arquivos.escritorRandom(path);
-			Arquivos.escritorOrdenado(path2);
-			Arquivos.escritorReverso(path3);
-			
+	    	return (tipo); 
 	    }
 }
