@@ -20,6 +20,8 @@ public class Vetor {
 	private int comparacaoshell;
 	private int contComparacaoShaker;
 	private int contTrocaShaker;
+	private static int contComparacaoQuick;
+	private static int contTrocaQuick;
 	
 	public Vetor(int tamanho) {
 		this.vetor = new Item[tamanho];
@@ -28,6 +30,13 @@ public class Vetor {
 	
 	public void setnElem(int nElem) {
 		this.nElem = nElem;
+	}
+	public static int getContComparacaoQuick() {
+		return contComparacaoQuick;
+	}
+
+	public static int getContTrocaQuick() {
+		return contTrocaQuick;
 	}
 	public int getContComparacaoShaker() {
 		return contComparacaoShaker;
@@ -259,5 +268,45 @@ public class Vetor {
 			dir = j - 1;
 		} while (esq <= dir);
 	}
+	public void quicksort (){
+		ordena (0, this.nElem-1);
+		}
+
+		private void ordena(int esq, int dir) {
+			int pivo, i = esq, j = dir;
+			Item temp;
+			pivo = this.vetor[(i + j) / 2].getChave();
+			contComparacaoQuick++;
+			do {
+				contComparacaoQuick++;
+				while (this.vetor[i].getChave() < pivo) {
+					i++;
+					contComparacaoQuick++;
+				}
+				contComparacaoQuick++;
+				while (this.vetor[j].getChave() > pivo) {
+					j--;
+					contComparacaoQuick++;
+				}
+				contComparacaoQuick++;
+				if (i <= j) {
+					contComparacaoQuick++;
+					temp = this.vetor[i];
+					this.vetor[i] = this.vetor[j];
+					this.vetor[j] = temp;
+					i++;
+					j--;
+					contTrocaQuick++;
+				}
+			} while (i <= j);
+			contComparacaoQuick++;
+			if (esq < j) {
+				ordena(esq, j);
+			}
+			contComparacaoQuick++;
+			if (dir > i) {
+				ordena(i, dir);
+			}
+		}
 	
 }
