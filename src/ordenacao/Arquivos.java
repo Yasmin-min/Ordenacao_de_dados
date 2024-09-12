@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import dados.Item;
+
 
 public class Arquivos {
 	
@@ -112,38 +114,41 @@ public class Arquivos {
 		buffWrite.close();
 	}
 	
-	public static void leitor(String path) throws IOException {
+	
+	public static void leitor(String path, Vetor vetor) throws IOException {
 		BufferedReader buffRead = new BufferedReader(new FileReader(path));
 		String linha = buffRead.readLine();
-		Integer vetor[] = new Integer[100];
+		Integer vetorLocal[] = new Integer[100];
 		int i = 0;
 		while (true) {
 			if (linha != null) {
-				vetor[i] = Integer.parseInt(linha);
+				vetorLocal[i] = Integer.parseInt(linha);
+				vetor.inserirDados(new Item(vetorLocal[i]));
 				i++;
-				System.out.print(vetor[i-1]+ "; ");
+				//System.out.println(vetorLocal[i-1]);
 			} else
 				break;
 			linha = buffRead.readLine();
 		}
 		buffRead.close();
 	}
-	public static void leitor10000(String path) throws IOException {
+	public static void leitor10000(String path, Vetor vetor) throws IOException {
 		BufferedReader buffRead = new BufferedReader(new FileReader(path));
-		String linha = "0";
-		Integer vetor[] = new Integer[10001];
+		String linha = buffRead.readLine();
+		Integer vetorLocal[] = new Integer[10000];
 		int i = 0;
 		while (true) {
 			if (linha != null) {
-				vetor[i] = Integer.parseInt(linha);
+				vetorLocal[i] = Integer.parseInt(linha);
+				vetor.inserirDados(new Item(vetorLocal[i]));
 				i++;
-				System.out.println(vetor[i-1]);
-
+				//System.out.println(vetorLocal[i-1]);
 			} else
 				break;
 			linha = buffRead.readLine();
 		}
 		buffRead.close();
 	}
+	
 	
 }
