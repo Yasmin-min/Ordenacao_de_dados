@@ -25,9 +25,9 @@ public class TestarOrdenacao {
 		
 		
 		
-		Arquivos.escritorRandom(path);
-		Arquivos.escritorOrdenado(path2);
-		Arquivos.escritorReverso(path3);
+		//Arquivos.escritorRandom(path);
+		//Arquivos.escritorOrdenado(path2);
+		//Arquivos.escritorReverso(path3);
 		//Arquivos.leitor(path);
 		Arquivos.leitor(path, vetor);
 		
@@ -39,10 +39,10 @@ public class TestarOrdenacao {
 		*/
 		
 		
-		vetor.shellSort();
+		vetor.selecaoDireta(); 
 		System.out.println("\nVetor ordenado: \n" + vetor.toString());
-		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoshell());
-		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoshell());
+		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoSelecao());
+		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoSelecao());
 		
 		
 		

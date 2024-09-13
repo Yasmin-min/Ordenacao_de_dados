@@ -113,6 +113,7 @@ public class Vetor {
 		int i, j, minimo;
 		Item temp;
 		for (i = 0; i < this.nElem - 1; i++) {
+			ComparacaoSelecao++;
 			minimo = i;
 			for (j = i + 1; j < this.nElem; j++) {
 				ComparacaoSelecao++;
@@ -135,8 +136,9 @@ public class Vetor {
 		do{
 			i = 0;
 			
+			contComparacaoBubble++; 
 			for (j = 0; j < n; j++) {
-				contComparacaoBubble++;
+				contComparacaoBubble++; 
 				if (this.vetor[j].getChave() > this.vetor[j+1].getChave()){
 					temp = this.vetor[j];
 					this.vetor[j] = this.vetor[j+1];
@@ -146,6 +148,7 @@ public class Vetor {
 				}
 			}
 			n = i;
+			contComparacaoBubble++; 
 		}while(n >= 1);
 	}
 
@@ -195,51 +198,57 @@ public class Vetor {
 			temp = this.vetor[i];
 			j = i-1;
 			
+			comparacaoinsert++;
 			while ((j >= 0)&&(this.vetor[j].getChave()>temp.getChave())){
 				comparacaoinsert++;
+
 				this.vetor [j+1] = this.vetor[j--];
 				movimentacaoinset++; 
 			}
 			this.vetor [j+1] = temp;
+			movimentacaoinset++;
 		}
 	} 
 	
 	//incompleto
 	public void shellSort() {
+	
+	    int i, j, h;
+	    Item temp;
+	    h = 1;
+	    
+	    do {
+	        h = 3 * h + 1;
+	        comparacaoshell++;
+	    } while (h < this.nElem);
+	    
+	    do {
+	        h = h / 3;
+	        
+	        comparacaoshell++; 
+	        for (i = h; i < this.nElem; i++) {
+	        	comparacaoshell++; 
+	        	
+	            temp = this.vetor[i];
+	            j = i;
 
-		int i, j, h;
-		Item temp;
-		h = 1;
-		do {
-			h = 3 * h + 1;
-		} while (h < this.nElem);
-		do {
-			h = h / 3;
+	            while (j >= h && this.vetor[j - h].getChave() > temp.getChave()) {
+	            	comparacaoshell++; 
+	                
+	                this.vetor[j] = this.vetor[j - h];  
+	                movimentacaoshell++;
+	                j -= h;
+	            }
 
-			for (i = h; i < this.nElem; i++) {
-				comparacaoshell++;
+	            this.vetor[j] = temp;
+	            movimentacaoshell++; 
 
-				temp = this.vetor[i];
-				j = i;
-				while (this.vetor[j - h].getChave() > temp.getChave()) {
-					this.vetor[j] = this.vetor[j - h];
-					
-					j -= h;
-
-					movimentacaoshell++;
-					comparacaoshell++;
-					if (j < h) {
-						break;
-					}
-				}
-				this.vetor[j] = temp;
-				movimentacaoshell++;
-
-			}
-		} while(h !=1);
+	        }
+	    } while (h != 1);
+	    
 
 	}
-	
+	 
 		public void shakersort() {
 		int esq, dir, i, j;
 		Item temp;
