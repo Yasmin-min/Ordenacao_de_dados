@@ -99,7 +99,7 @@ public class Vetor {
 	}
 
 	public boolean inserirDados(Item novo) {
-		if (this.nElem == this.vetor.length) { // verifica se est� cheio
+		if (this.nElem == this.vetor.length) { 
 			return false;
 		} else {
 			this.vetor[this.nElem] = novo;
@@ -152,7 +152,6 @@ public class Vetor {
 		}while(n >= 1);
 	}
 
-	//incompleto
 	public void heapSort() {
 		int dir = nElem - 1;
 		int esq = (dir - 1) / 2;
@@ -210,7 +209,6 @@ public class Vetor {
 		}
 	} 
 	
-	//incompleto
 	public void shellSort() {
 	
 	    int i, j, h;
@@ -280,6 +278,7 @@ public class Vetor {
 			dir = j - 1;
 		} while (esq <= dir);
 	}
+		
 	public void quicksort (){
 		ordena (0, this.nElem-1);
 		}
