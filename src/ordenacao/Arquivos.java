@@ -127,7 +127,7 @@ public class Arquivos {
 				//System.out.println(vetorLocal[i-1]);
 			} else
 				break;
-			linha = buffRead.readLine();
+			linha = buffRead.readLine(); 
 		}
 		buffRead.close();
 	}

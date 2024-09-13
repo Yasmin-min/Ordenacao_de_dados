@@ -29,7 +29,7 @@ public class Vetor {
 	}
 	
 	public void setnElem(int nElem) {
-		this.nElem = nElem;
+		this.nElem = nElem; 
 	}
 	public static int getContComparacaoQuick() {
 		return contComparacaoQuick;
@@ -129,27 +129,30 @@ public class Vetor {
 		}
 	}
 
-	public void bubblesort (){ 
+	public void bubblesort() {
 		int n, i, j;
 		Item temp;
-		n = this.nElem-1;
-		do{
+		n = this.nElem - 1;
+		do {
 			i = 0;
-			
-			contComparacaoBubble++; 
+
+			//contComparacaoBubble++;
 			for (j = 0; j < n; j++) {
-				contComparacaoBubble++; 
-				if (this.vetor[j].getChave() > this.vetor[j+1].getChave()){
+				contComparacaoBubble++;
+				if (this.vetor[j].getChave() > this.vetor[j + 1].getChave()) {
+					contComparacaoBubble++;
+					
 					temp = this.vetor[j];
-					this.vetor[j] = this.vetor[j+1];
-					this.vetor[j+1] = temp;
+					this.vetor[j] = this.vetor[j + 1];
+					this.vetor[j + 1] = temp;
 					contTrocaBubble++;
 					i = j;
 				}
 			}
 			n = i;
-			contComparacaoBubble++; 
-		}while(n >= 1);
+
+			contComparacaoBubble++;
+		} while (n >= 1);
 	}
 
 	public void heapSort() {

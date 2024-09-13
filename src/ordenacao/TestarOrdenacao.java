@@ -39,10 +39,10 @@ public class TestarOrdenacao {
 		*/
 		
 		
-		vetor.selecaoDireta(); 
+		vetor.bubblesort();  
 		System.out.println("\nVetor ordenado: \n" + vetor.toString());
-		System.out.println("Num. Comparacoes: \n" + vetor.getComparacaoSelecao());
-		System.out.println("Num. movimentação: \n" + vetor.getMovimentacaoSelecao());
+		System.out.println("Num. Comparacoes: \n" + vetor.getContComparacaoBubble());
+		System.out.println("Num. movimentação: \n" + vetor.getContTrocaBubble());
 		
 		
 		
@@ -193,7 +193,7 @@ public class TestarOrdenacao {
     		
     	}
     	
-    	return (tamanho);
+    	return (tamanho); 
     }
     
     public void criarPasta() {
