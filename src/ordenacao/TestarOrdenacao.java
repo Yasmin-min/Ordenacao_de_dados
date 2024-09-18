@@ -41,8 +41,8 @@ public class TestarOrdenacao {
 		
 		vetor.bubblesort();  
 		System.out.println("\nVetor ordenado: \n" + vetor.toString());
-		System.out.println("Num. Comparacoes: \n" + vetor.getContComparacaoBubble());
-		System.out.println("Num. movimentação: \n" + vetor.getContTrocaBubble());
+		//System.out.println("Num. Comparacoes: \n" + vetor.getContComparacaoBubble());
+		//System.out.println("Num. movimentação: \n" + vetor.getContTrocaBubble());
 		
 		
 		
