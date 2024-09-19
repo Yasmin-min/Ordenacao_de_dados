@@ -8,148 +8,209 @@ import dados.Item;
 
 public class ProgramaPrincipal {
 
-	public static void main(String[] args) throws IOException{
-		
-		criarPastas();
-		menu();
-		
-		Vetor vetor = new Vetor(tamanho());
-		Arquivos.leitor(tipoArquivo(), vetor);
-		
-		
+	private static Scanner scanner = new Scanner(System.in);
+
+	public static void main(String[] args) throws IOException {
+		int tamanho = 0, tan;
+		String tipoArquivo = "";
+		Arquivos.criarPasta();
+
+		System.out.println("Qual o tamnho do vetor que deseja ordenar: " + "\n1. 100" + "\n2. 10000");
+
+		tan = scanner.nextInt();
+		switch (tan) {
+		case 1:
+			tamanho = 100;
+			tipoArquivo = tipoArquivo100();
+			break;
+
+		case 2:
+			tamanho = 10000;
+			tipoArquivo = tipoArquivo10000();
+			break;
+		}
+
+		Vetor vetor = new Vetor(tamanho);
+		Arquivos.leitor(tipoArquivo, vetor);
+
+		if (tan == 1) {
+			menu100(vetor);
+		} else if (tan == 2) {
+			menu10000(vetor);
+		}
+
 	}
-	
-	public static void menu() {
-        Scanner scanner = new Scanner(System.in);
-        Arquivos.criarPasta();
-        
-        int opcao;
 
-       
-            System.out.println("\n---- ORDENACAO DE DADOS -----\n");
-            System.out.println("Selecione o valor do tipo de ordenação desejado: "
-                    + "\n1. Seleção Direta"
-                    + "\n2. Heapsort"
-                    + "\n3. Inserção Direta"
-                    + "\n4. Shellsort"
-                    + "\n5. Bubblesort"
-                    + "\n6. Shakesort"
-                    + "\n7. Quicksort");
+	public static void menu100(Vetor vetor) {
+		int opcao;
 
-            opcao = scanner.nextInt();
+		System.out.println("\n---- ORDENACAO DE DADOS -----\n");
+		System.out.println("Selecione o valor do tipo de ordenação desejado: " + "\n1. Seleção Direta" + "\n2. Heapsort"
+				+ "\n3. Inserção Direta" + "\n4. Shellsort" + "\n5. Bubblesort" + "\n6. Shakesort" + "\n7. Quicksort");
 
-            switch (opcao) {
-                case 1:
-                	String path = tipoArquivo();                	
+		opcao = scanner.nextInt();
 
-                    System.out.println("Selecionou Seleção Direta");
-                    break;
-                case 2:
-                    System.out.println("Selecionou Heapsort");
-                    break;
-                case 3:
-                    System.out.println("Selecionou Inserção Direta");
-                    break;
-                case 4:
-                    System.out.println("Selecionou Shellsort");
-                    break;
-                case 5:
-                    System.out.println("Selecionou Bubblesort");
-                    break;
-                case 6:
-                    System.out.println("Selecionou Shakesort");
-                    break;
-                case 7:
-                    System.out.println("Selecionou Quicksort");
-                    break;
-                default:
-                    System.out.println("Opção inválida, tente novamente.");
-                    break;
-            }
-        
+		switch (opcao) {
+		case 1:
+			vetor.selecaoDireta();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
 
-        scanner.close();
-    }
-	
-	 public static String tipoArquivo() {
-	        Scanner scanner = new Scanner(System.in);
-	    	String tipo= ""; 
-	    	int opcao;
-	    	
-	    	System.out.println("\n Digite o valor da opção do tipo de arquivo que deseja: "
-	    			+"\n1. Random"
-	    			+"\n2. Ordenado"
-	    			+"\n3. Reverso" );
-	    	
-	    	opcao = scanner.nextInt();
-	    	
-	    	switch (opcao){
-	    		case 1: 
-	    			tipo = "path";
-	    			break;
-	    		case 2: 
-	    			tipo = "path2";
-	    			break;
-	    		case 3: 
-	    			tipo = "path3";
-	    			break; 
-	    		default: 
-	    			System.out.println("Opção inválida, tente novamente!");
-	                break;
-	    	}
-	    	
-	    	return (tipo); 
-	    }
-	    
-	    public static int tamanho() {
-	        Scanner scanner = new Scanner(System.in);
-	        
-	    	int opcao, tamanho = 0; 
-	   
-	    	
-	    	
-	    	System.out.print("Escolha a opção do tamanho desejado do vetor: "
-	    			+"\n1. 100;"
-	    			+ "\n2. 10.000"
-	    			+"\n3. Escolher o tamanho");
-	    	opcao = scanner.nextInt();
-	    	
-	    	switch (opcao) { 
-	    	case 1: 
-	    		tamanho = 100;
-	    		break;
-	    		
-	    	case 2: 
-	    		tamanho= 10000;
-	    		break; 
-	    		
-	    	case 3: 
-	    		System.out.print("Digite o tamanho desejado: ");
-	    		tamanho = scanner.nextInt();
-	    		
-	    	default: 
-				System.out.println("Opção inválida, tente novamente.");
-	            break;
-	    		
-	    	}
-	    	
-	    	return (tamanho);
-	    }
-	    
-	    public static void criarPastas() throws IOException {
-	    	Arquivos.criarPasta();
-			
-			String path = "C:\\TesteArquivo\\texto.txt";
-			String path2 = "C:\\TesteArquivo\\texto2.txt";
-			String path3 = "C:\\TesteArquivo\\texto3.txt";
-			
-			String path4 = "C:\\TesteArquivo\\texto4.txt";
-			String path5 = "C:\\TesteArquivo\\texto5.txt";
-			String path6 = "C:\\TesteArquivo\\texto6.txt";
-			
-			Arquivos.escritorRandom(path);
-			Arquivos.escritorOrdenado(path2);
-			Arquivos.escritorReverso(path3);
-			
-	    }
+		case 2:
+			vetor.heapSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 3:
+			vetor.insercao();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 4:
+			vetor.shellSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 5:
+			vetor.bubblesort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 6:
+			vetor.shakerSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 7:
+			vetor.quicksort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		default:
+			System.out.println("Opção inválida, tente novamente.");
+			break;
+		}
+	}
+
+	public static void menu10000(Vetor vetor) {
+
+		int opcao;
+
+		System.out.println("\n---- ORDENACAO DE DADOS -----\n");
+		System.out.println("Selecione o valor do tipo de ordenação desejado: " + "\n1. Seleção Direta" + "\n2. Heapsort"
+				+ "\n3. Inserção Direta" + "\n4. Shellsort" + "\n5. Bubblesort" + "\n6. Shakesort" + "\n7. Quicksort");
+
+		opcao = scanner.nextInt();
+
+		switch (opcao) {
+		case 1:
+			vetor.selecaoDireta();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 2:
+			vetor.heapSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 3:
+			vetor.insercao();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 4:
+			vetor.shellSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 5:
+			vetor.bubblesort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 6:
+			vetor.shakerSort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		case 7:
+			vetor.quicksort();
+			System.out.println("Num. Comparacoes: \n" + vetor.getComparacoes());
+			System.out.println("Num. movimentação: \n" + vetor.getMovimentacoes());
+			break;
+
+		default:
+			System.out.println("Opção inválida, tente novamente.");
+			break;
+		}
+
+	}
+
+	public static String tipoArquivo100() {
+
+		String tipo = "";
+		int opcao;
+
+		System.out.println("\n Digite o valor da opção do tipo de arquivo que deseja: " + "\n1. Random"
+				+ "\n2. Ordenado" + "\n3. Reverso");
+
+		opcao = scanner.nextInt();
+
+		switch (opcao) {
+		case 1:
+			tipo = "C:\\TesteArquivo\\texto.txt";
+			break;
+		case 2:
+			tipo = "C:\\TesteArquivo\\texto2.txt";
+			break;
+		case 3:
+			tipo = "C:\\TesteArquivo\\texto3.txt";
+			break;
+		default:
+			System.out.println("Opção inválida, tente novamente!");
+			break;
+		}
+
+		return (tipo);
+	}
+
+	public static String tipoArquivo10000() {
+
+		String tipo = "";
+		int opcao;
+
+		System.out.println("\n Digite o valor da opção do tipo de arquivo que deseja: " + "\n1. Random"
+				+ "\n2. Ordenado" + "\n3. Reverso");
+
+		opcao = scanner.nextInt();
+
+		switch (opcao) {
+		case 1:
+			tipo = "C:\\TesteArquivo\\texto4.txt";
+			break;
+		case 2:
+			tipo = "C:\\TesteArquivo\\texto5.txt";
+			break;
+		case 3:
+			tipo = "C:\\TesteArquivo\\texto6.txt";
+			break;
+		default:
+			System.out.println("Opção inválida, tente novamente!");
+			break;
+		}
+		return (tipo);
+	}
 }
